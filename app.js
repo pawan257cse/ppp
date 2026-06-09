@@ -11,9 +11,9 @@ const PRODUCT_CATALOG = [
         categoryLabel: "Baby & Kids Wear",
         image: "assets/prod_romper.png",
         images: ["assets/prod_romper.png", "assets/logo.png"],
-        originalPrice: 35.00,
-        price: 28.00,
-        discount: 20,
+        originalPrice: 1299.00,
+        price: 999.00,
+        discount: 23,
         rating: 4.8,
         reviewsCount: 42,
         shortDesc: "Made from ultra-soft GOTS-certified organic knit cotton, keeping your little bundle comfortable all day long. Features simple nickel-free snap buttons.",
@@ -37,9 +37,9 @@ const PRODUCT_CATALOG = [
         categoryLabel: "Montessori Toys",
         image: "assets/prod_rainbow.png",
         images: ["assets/prod_rainbow.png", "assets/logo.png"],
-        originalPrice: 48.00,
-        price: 39.90,
-        discount: 17,
+        originalPrice: 1999.00,
+        price: 1599.00,
+        discount: 20,
         rating: 4.9,
         reviewsCount: 56,
         shortDesc: "Aesthetic wooden rainbow stacking blocks to promote creative exploration, spatial reasoning, and hand-eye coordination.",
@@ -63,9 +63,9 @@ const PRODUCT_CATALOG = [
         categoryLabel: "Baby Gear",
         image: "assets/prod_stroller.png",
         images: ["assets/prod_stroller.png", "assets/logo.png"],
-        originalPrice: 320.00,
-        price: 249.00,
-        discount: 22,
+        originalPrice: 14999.00,
+        price: 11999.00,
+        discount: 20,
         rating: 4.7,
         reviewsCount: 31,
         shortDesc: "Aesthetic, ultra-lightweight travel stroller with one-hand folding, multi-position recline, and dynamic shock absorbers.",
@@ -89,8 +89,8 @@ const PRODUCT_CATALOG = [
         categoryLabel: "Maternity",
         image: "assets/prod_dress.png",
         images: ["assets/prod_dress.png", "assets/logo.png"],
-        originalPrice: 95.00,
-        price: 76.00,
+        originalPrice: 3499.00,
+        price: 2799.00,
         discount: 20,
         rating: 4.6,
         reviewsCount: 19,
@@ -114,9 +114,9 @@ const PRODUCT_CATALOG = [
         categoryLabel: "Baby & Kids Wear",
         image: "assets/prod_romper.png",
         images: ["assets/prod_romper.png", "assets/logo.png"],
-        originalPrice: 42.00,
-        price: 33.60,
-        discount: 20,
+        originalPrice: 1799.00,
+        price: 1399.00,
+        discount: 22,
         rating: 4.8,
         reviewsCount: 22,
         shortDesc: "Cozy two-piece pullover sweater and jogger pants set made from warm, breathable organic cotton yarns.",
@@ -138,9 +138,9 @@ const PRODUCT_CATALOG = [
         categoryLabel: "Montessori Toys",
         image: "assets/prod_rainbow.png",
         images: ["assets/prod_rainbow.png", "assets/logo.png"],
-        originalPrice: 32.00,
-        price: 24.00,
-        discount: 25,
+        originalPrice: 1199.00,
+        price: 999.00,
+        discount: 16,
         rating: 4.7,
         reviewsCount: 18,
         shortDesc: "Set of 10 faceted wooden stones to develop concentration, problem-solving, and hand-eye balance skills.",
@@ -162,9 +162,9 @@ const PRODUCT_CATALOG = [
         categoryLabel: "Baby Gear",
         image: "assets/prod_stroller.png",
         images: ["assets/prod_stroller.png", "assets/logo.png"],
-        originalPrice: 450.00,
-        price: 360.00,
-        discount: 20,
+        originalPrice: 21999.00,
+        price: 17999.00,
+        discount: 18,
         rating: 4.9,
         reviewsCount: 14,
         shortDesc: "Beautiful solid pine crib that easily converts from infant crib, to toddler bed, to daybed as your child grows.",
@@ -186,8 +186,8 @@ const PRODUCT_CATALOG = [
         categoryLabel: "Maternity",
         image: "assets/prod_dress.png",
         images: ["assets/prod_dress.png", "assets/logo.png"],
-        originalPrice: 88.00,
-        price: 69.00,
+        originalPrice: 3299.00,
+        price: 2599.00,
         discount: 21,
         rating: 4.7,
         reviewsCount: 25,
@@ -219,8 +219,8 @@ const STATE = {
 const PROMOTIONS = {
     "PRETUTE20": { type: "flat_percent", value: 20, description: "Flat 20% Off Order" },
     "GEAR25": { type: "category_percent", category: "baby-gear", value: 25, description: "25% Off Nursery Gear" },
-    "MOM15": { type: "min_spend_maternity", value: 15, threshold: 80, description: "$15 Off Maternity ($80 Min Spend)" },
-    "PLAYFREE": { type: "flat_amount", value: 10, description: "Flat $10 Off Toys/Accessories" }
+    "MOM15": { type: "min_spend_maternity", value: 1000, threshold: 4999, description: "₹1,000 Off Maternity (₹4,999 Min Spend)" },
+    "PLAYFREE": { type: "flat_amount", value: 500, description: "Flat ₹500 Off Toys/Accessories" }
 };
 
 // ==========================================================================
@@ -388,8 +388,8 @@ function createProductCard(prod) {
             </div>
             <div class="card-price-row">
                 <div class="card-prices">
-                    <span class="disc-price">$${prod.price.toFixed(2)}</span>
-                    <span class="orig-price">$${prod.originalPrice.toFixed(2)}</span>
+                    <span class="disc-price">₹${prod.price.toFixed(2)}</span>
+                    <span class="orig-price">₹${prod.originalPrice.toFixed(2)}</span>
                 </div>
                 <button class="btn-add-cart-circle add-cart-trigger" data-id="${prod.id}" aria-label="Add to bag">
                     <i class="fa-solid fa-basket-shopping"></i>
@@ -558,8 +558,8 @@ function renderProductDetails(productId) {
 
     // Info panel
     document.getElementById("detailTitle").textContent = prod.title;
-    document.getElementById("detailDiscountPrice").textContent = `$${prod.price.toFixed(2)}`;
-    document.getElementById("detailOriginalPrice").textContent = `$${prod.originalPrice.toFixed(2)}`;
+    document.getElementById("detailDiscountPrice").textContent = `₹${prod.price.toFixed(2)}`;
+    document.getElementById("detailOriginalPrice").textContent = `₹${prod.originalPrice.toFixed(2)}`;
     document.getElementById("detailDiscountPercentage").textContent = `${prod.discount}% OFF`;
     document.getElementById("detailShortDesc").textContent = prod.shortDesc;
     document.getElementById("detailStars").innerHTML = getRatingStarsHTML(prod.rating);
@@ -716,8 +716,8 @@ function renderCartPage() {
                 </div>
             </div>
             <div class="item-price-block">
-                <span class="disc-price">$${(prod.price * item.quantity).toFixed(2)}</span>
-                <span class="orig-price">$${(prod.originalPrice * item.quantity).toFixed(2)}</span>
+                <span class="disc-price">₹${(prod.price * item.quantity).toFixed(2)}</span>
+                <span class="orig-price">₹${(prod.originalPrice * item.quantity).toFixed(2)}</span>
             </div>
             <button class="remove-item-btn" data-index="${index}" aria-label="Remove item"><i class="fa-solid fa-trash-can"></i></button>
         `;
@@ -807,7 +807,7 @@ function renderCartDrawer() {
                 </div>
             </div>
             <div class="item-price-block" style="flex-direction:column; align-items:flex-end; gap:0;">
-                <span class="disc-price" style="font-size:0.95rem;">$${(prod.price * item.quantity).toFixed(2)}</span>
+                <span class="disc-price" style="font-size:0.95rem;">₹${(prod.price * item.quantity).toFixed(2)}</span>
             </div>
             <button class="remove-item-btn" data-index="${index}" style="font-size:0.95rem;" aria-label="Remove item"><i class="fa-solid fa-trash-can"></i></button>
         `;
@@ -824,7 +824,7 @@ function renderCartDrawer() {
         return sum + (prod ? prod.price * item.quantity : 0);
     }, 0);
 
-    document.getElementById("cartDrawerSubtotal").textContent = `$${subtotal.toFixed(2)}`;
+    document.getElementById("cartDrawerSubtotal").textContent = `₹${subtotal.toFixed(2)}`;
 }
 
 
@@ -953,7 +953,7 @@ function calculateCartPricing() {
         return sum + (prod ? prod.price * item.quantity : 0);
     }, 0);
 
-    subtotalSpan.textContent = `$${subtotal.toFixed(2)}`;
+    subtotalSpan.textContent = `₹${subtotal.toFixed(2)}`;
 
     let discountSavings = 0;
     
@@ -990,7 +990,7 @@ function calculateCartPricing() {
                 // remove code invalid threshold
                 STATE.promoApplied = null;
                 localStorage.removeItem("pretute_promo");
-                showNotification(`Code ${promo.code} requires minimum $${promo.threshold} in maternity wear`, "error");
+                showNotification(`Code ${promo.code} requires minimum ₹${promo.threshold} in maternity wear`, "error");
             }
         }
         else if (promo.type === "flat_amount") {
@@ -998,10 +998,10 @@ function calculateCartPricing() {
         }
     }
 
-    savingsSpan.textContent = `-$${discountSavings.toFixed(2)}`;
+    savingsSpan.textContent = `-₹${discountSavings.toFixed(2)}`;
     
     const finalTotal = Math.max(0, subtotal - discountSavings);
-    grandTotalSpan.textContent = `$${finalTotal.toFixed(2)}`;
+    grandTotalSpan.textContent = `₹${finalTotal.toFixed(2)}`;
 }
 
 // Coupon Form Actions
@@ -1081,7 +1081,7 @@ function setupCheckoutSubmission() {
 
         const grandTotal = Math.max(0, subtotal - discountSavings);
         
-        document.getElementById("successTotalPaid").textContent = `$${grandTotal.toFixed(2)}`;
+        document.getElementById("successTotalPaid").textContent = `₹${grandTotal.toFixed(2)}`;
         
         // Random order ID generator
         const randomId = "PRT-" + Math.floor(1000000 + Math.random() * 9000000);
@@ -1214,7 +1214,7 @@ function setupSearchSuggestions() {
                     <img src="${p.image}" alt="${p.title}">
                     <div class="suggestion-info">
                         <h5>${p.title}</h5>
-                        <span>$${p.price.toFixed(2)}</span>
+                        <span>₹${p.price.toFixed(2)}</span>
                     </div>
                 `;
                 item.addEventListener("click", () => {
@@ -1570,8 +1570,8 @@ function openQuickViewModal(productId) {
                     </div>
                 </div>
                 <div class="price-box" style="margin-bottom:12px;">
-                    <span class="discount-price" style="font-size:1.8rem;">$${prod.price.toFixed(2)}</span>
-                    <span class="original-price" style="font-size:1.1rem;">$${prod.originalPrice.toFixed(2)}</span>
+                    <span class="discount-price" style="font-size:1.8rem;">₹${prod.price.toFixed(2)}</span>
+                    <span class="original-price" style="font-size:1.1rem;">₹${prod.originalPrice.toFixed(2)}</span>
                 </div>
                 <p class="product-short-desc" style="margin-bottom:20px;">${prod.shortDesc}</p>
                 <div class="purchase-actions" style="margin-bottom:0;">
