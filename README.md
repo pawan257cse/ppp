@@ -1,67 +1,91 @@
-# PRETUTE Premium E-Commerce Storefront
+# PRETUTE Premium E-Commerce Storefront (React & Node.js SPA)
 
-A modern, highly responsive e-commerce web application for **PRETUTE** (a premium baby, kids, and maternity lifestyle brand) inspired by the layout and structural flow of FirstCry.
-
-🚀 **Live Demo Server**: Serve locally at `http://127.0.0.1:8080` or host statically on GitHub Pages.
+A modern, highly responsive e-commerce web application for **PRETUTE** (a premium baby, kids, and maternity lifestyle brand) migrated to a **React** frontend and a **Node.js Express** backend.
 
 ---
 
-## 🌟 Key Features
+## 🌟 Key Features & Updates
 
-1. **Hash-Based SPA Routing**: Smooth navigation transitions across Home, Categories, Product Details, Cart, Wishlist, and Contact views without page refreshes.
-2. **Interactive Carousel Banner**: Automatic slide transitions with manual dot controls.
-3. **Live Search Suggestions**: Instant drop-down search suggestions linking directly to products.
-4. **Deal Countdown Timer**: A real-time ticking flash sale countdown clock.
-5. **Product Detail Magnifier**: Coordinating lens hover zoom effect scaling details by 2.5x.
-6. **State Persistence**: Cart count, items list, and wishlist synchronized with the browser's `localStorage`.
-7. **Coupon Rules Engine**: Apply custom promotion codes:
-   - `PRETUTE20`: Flat 20% off total orders.
-   - `GEAR25`: 25% off category specific strollers/gear.
-   - `MOM15`: $15 off maternity wears with minimum purchase threshold of $80.
-   - `PLAYFREE`: Flat $10 off toys.
-8. **Contact Form Validation**: Real-time validation checks with floating labels and submit loaders.
-9. **Fully Responsive Grid**: Styled for Desktop, Tablet, Mobile, and Tiny Mobile breakpoints.
-
----
-
-## 🛠️ Technology Stack
-- **HTML5**: Semantic nodes optimized for search ranking.
-- **CSS3**: Layouts powered by CSS Grid and Flexbox with premium variables, backdrop filter blur, and custom animation keyframes.
-- **JavaScript (ES6+)**: Custom SPA state engine.
-- **Icons & Fonts**: Font Awesome Icons and Google Fonts (*Outfit* & *Playfair Display*).
+1. **Vite React SPA**: Smooth single-page architecture with React state handling.
+2. **Express REST API Backend**: Node.js backend handles data operations (Products, Bookings, and Messages).
+3. **JSON File Database**: Stored locally in `server/data/db.json` for persistent storage without external database installation.
+4. **Backend Dashboard**:
+   - **Product Manager**: Full CRUD actions (Add, Edit, Delete, View) for the product catalog.
+   - **Booking Control**: Manage, confirm, or cancel customer consultations.
+   - **Inbox**: Read and clear incoming customer messages.
+5. **Interactive Booking Form**: Scheduling tool on the Home page for custom nursery and play consults.
+6. **Interactive Contact Form**: Custom inbox mailer form on the Home page.
+7. **Coupon Rules Engine**: Apply discount codes like `PRETUTE20` (flat 20%), `GEAR25` (25% off gear), `PLAYFREE` (₹500 off toys), or `MOM15` (₹1000 off maternity with ₹4999 min spend).
+8. **Product Detail Magnifier**: Coordinating lens hover zoom effect scaling details by 2.5x.
+9. **State Persistence**: Cart items, wishlist items, and coupon states are synchronized with the browser's `localStorage`.
 
 ---
 
 ## 📂 Project Structure
+
 ```text
-├── index.html        # SPA views, headers, modal, and footer structure
-├── style.css         # Typography, custom properties, and media queries
-├── app.js            # Router logic, local storage state, and interactive handlers
-├── README.md         # Project documentation
-└── assets/           # High-fidelity generated logo and storefront images
-    ├── logo.png
-    ├── hero_fashion.png
-    ├── hero_toys.png
-    ├── prod_romper.png
-    ├── prod_rainbow.png
-    ├── prod_stroller.png
-    └── prod_dress.png
+├── package.json               # Root package.json (concurrently orchestrator)
+├── README.md                  # Project documentation
+├── server/                    # Node.js Express server
+│   ├── package.json           # Server package configs
+│   ├── index.js               # Express app routes & database seeders
+│   └── data/
+│       └── db.json            # Local JSON database file
+└── client/                    # Vite React client
+    ├── package.json           # React dependencies
+    ├── vite.config.js         # Port/Proxy setups for backend integration
+    ├── index.html             # Google fonts & FontAwesome imports
+    ├── public/
+    │   └── assets/            # Storefront images and logos
+    └── src/
+        ├── main.jsx           # React app entry
+        ├── App.jsx            # Router and base structure
+        ├── index.css          # Storefront styles + new dashboard styling
+        ├── context/
+        │   └── ShopContext.jsx# Cart, wishlist, and API request dispatches
+        ├── components/
+        │   ├── Header.jsx     # Navigation, logo, search suggests, profile menu
+        │   ├── Footer.jsx     # Philosophy markers, links, newsletter forms
+        │   ├── ProductCard.jsx# Reusable product cards
+        │   ├── CartDrawer.jsx # Slide-out drawer
+        │   └── QuickViewModal.jsx
+        └── pages/
+            ├── Home.jsx       # Carousel, countdowns, booking and contact forms
+            ├── Category.jsx   # Catalog listing filter & search queries
+            ├── ProductDetails.jsx # Detailed spec sheet, reviews, zoom magnifier
+            ├── Cart.jsx       # Checkout layout & order success overlay
+            ├── Wishlist.jsx   # Favorited items grid
+            ├── Contact.jsx    # Contact support page
+            └── Dashboard.jsx  # Admin Dashboard (Product and Booking Managers)
 ```
 
 ---
 
-## 💻 Local Setup & Development
+## 🛠️ Local Setup & Development
 
-### 1. Prerequisite
-Ensure you have Node.js installed or a static web server utility.
+### 1. Prerequisites
+Ensure you have [Node.js](https://nodejs.org/) installed.
 
-### 2. Launch Local Server
-To run the project locally, install a quick static web server:
+### 2. Install Dependencies
+Run the command below in the root folder to automatically install dependencies for the root, client, and server:
 ```bash
-# Using Node.js http-server
-npx http-server -p 8080
-
-# Or using Python
-python -m http.server 8080
+npm run install-all
 ```
-Open **[http://127.0.0.1:8080](http://127.0.0.1:8080)** in your browser.
+
+### 3. Run Development Server
+To launch both the Vite React dev server (`http://localhost:5173`) and the Express server (`http://localhost:5000`) concurrently, run:
+```bash
+npm run dev
+```
+Open **[http://localhost:5173](http://localhost:5173)** in your browser.
+
+### 4. Build & Run in Production
+To compile the static React assets and host the app entirely from the Express server:
+```bash
+# Build React client bundle
+npm run build
+
+# Start the Express server
+npm run server
+```
+The application will be served at **[http://localhost:5000](http://localhost:5000)**.
